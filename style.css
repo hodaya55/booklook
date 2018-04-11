@@ -1,0 +1,20 @@
+.fa-eye {
+    font-size: 50px;
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+h1,h3 {
+    float: left;
+    padding-right: 10px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
