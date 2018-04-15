@@ -8,8 +8,12 @@
     border-bottom: 1px solid #eee;
 }
 
-h1,h3 {
+.header {
     float: left;
+}
+
+h1,
+h3 {
     padding-right: 10px;
     font-weight: 600;
 }
