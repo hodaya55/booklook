@@ -2,7 +2,8 @@
     font-size: 50px;
 }
 
-.page-header {
+.page-header ,
+.headerList{
     padding-bottom: 9px;
     margin: 40px 0 20px;
     border-bottom: 1px solid #eee;
@@ -10,26 +11,48 @@
 
 .header {
     float: left;
+    font-weight: 600;
 }
 
 h1,
 h3 {
     padding-right: 10px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .btn-primary {
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    /* background-color: #337ab7; */
+    background-color: #e4a214;
+    border-color: black;
 }
 
-.right {
+.left {
     float: left;
 }
 
 .list-10-books {
     float: left;
-    margin-top: 80px;
+    margin-top: 15px;
+    padding-left: 60px;
     display: none;
     /* display: block; */
 }
+
+input{
+    margin-bottom: 8px;
+}
+
+ol {list-style: none; counter-reset: li}
+
+ol li{
+    font-size: 16.5px;
+ counter-increment: li;
+}
+
+ol li::before {content: counter(li); color: orange;
+    display: inline-block; width: 1em; margin-left: -1.5em;
+    font-weight: 600;
+    margin-right: 0.5em; text-align: right; direction: rtl}
+
+
+

@@ -5,10 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <script src="node_modules/jquery/dist/jquery.js"> </script>
-    <script src="node_modules/bootstrap/dist/css/ "> </script>
-    <script src="node_modules/font-awesome/fonts/ "> </script>
-    <script src="node_modules/handlebars/dist/ "> </script> -->
 
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -22,13 +18,14 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3 right">
+            <div class="col-md-6 col-md-offset-3 left">
                 <div class="page-header">
                     <h1 class="header">BookLook</h1>
                     <i class="fa fa-eye"></i>
                 </div>
                 <div class="containerBook"></div>
-
+                <img class="load" src="loading.gif" alt="Loading" title="Loading" style="margin-left: 217px; " />
+          
                 <form class="search-form">
                     <div class="form-group">
                         <h3> Search by:</h3>
@@ -41,8 +38,8 @@
             </div>
 
             <div class="col-md-6 col-md-offset-3 list-10-books">
-                <h3>list-10-books:</h3>
-                <ol class="list">
+                <h3 class="headerList">Show 10 results: </h3>
+                <ol class="list" >
 
                 </ol>
             </div>
