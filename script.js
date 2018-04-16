@@ -21,7 +21,7 @@ var fetch = function (pathURL, callBack, status) {
     method: 'GET',
     url: pathURL,
 
-    beforeSend: function(){
+    beforeSend: function () {
       $('.load').show();
     },
     success: function (data) {
@@ -62,7 +62,7 @@ $('.searchBtn').click(function () {
     fetch(url, callBack, 1);
   }
   else {
-    $('.list-10-books').css('display', 'none');    
+    $('.list-10-books').css('display', 'none');
     console.log(' search isbn only');
     url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + '';
     // var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:0439023521';

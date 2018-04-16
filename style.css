@@ -2,8 +2,8 @@
     font-size: 50px;
 }
 
-.page-header ,
-.headerList{
+.page-header,
+.headerList {
     padding-bottom: 9px;
     margin: 40px 0 20px;
     border-bottom: 1px solid #eee;
@@ -38,21 +38,29 @@ h3 {
     /* display: block; */
 }
 
-input{
+input {
     margin-bottom: 8px;
 }
 
-ol {list-style: none; counter-reset: li}
-
-ol li{
-    font-size: 16.5px;
- counter-increment: li;
+ol {
+    list-style: none;
+    counter-reset: li
 }
 
-ol li::before {content: counter(li); color: orange;
-    display: inline-block; width: 1em; margin-left: -1.5em;
+ol li {
+    font-size: 16.5px;
+    cursor: pointer;
+    counter-increment: li;
+}
+
+ol li::before {
+    content: counter(li);
+    color: orange;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
     font-weight: 600;
-    margin-right: 0.5em; text-align: right; direction: rtl}
-
-
-
+    margin-right: 0.5em;
+    text-align: right;
+    direction: rtl
+}
