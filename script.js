@@ -7,6 +7,9 @@ var callBack = function (data1, status) {
   saveData = data1;
 
   if (status === 1) { // title or author
+    if (data1.totalItems === 0)
+      $('.containerBook').append("<h5 style='color:red'>No search result found by this input. </h5>")
+    else
     showList(data1);
   }
   else { // isbn
@@ -15,7 +18,8 @@ var callBack = function (data1, status) {
     else
       showBook(data1, 0);
   }
-  
+
+  //saveData = data1;
 };
 
 var fetch = function (pathURL, callBack, status) {
@@ -75,13 +79,15 @@ $('.searchBtn').click(function () {
 });
 
 var showList = function (res) {
+  $('.list-10-books').css('display', 'block');
+  console.log("The data in show list:");
+  console.log(res);
   for (var i = 0; i < 10; i++) {
-    var title = res.items[i].volumeInfo.title;
-      
-    $('ol').append('<li data-id= ' + i + '>' + title + '</li>');
+    var t = res.items[i].volumeInfo.title;
+    $('ol').append('<li data-id= ' + i + '>' + t + '</li>');
   }
 
-  $('.list-10-books').css('display', 'block');
+  // $('.list-10-books').css('display', 'block');
 };
 
 var showBook = function (data, i) {
@@ -111,7 +117,7 @@ var showBook = function (data, i) {
 // show the detials in the containerbook of specify book by click on list item
 $('ol').on('click', 'li', function () {
   console.log($(this).text());
-  
+
   $('.containerBook').empty();
   var id = $(this).data().id;
   showBook(saveData, id);
