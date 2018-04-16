@@ -3,6 +3,9 @@ var saveData;
 $('.load').hide();
 
 var callBack = function (data1, status) {
+
+  saveData = data1;
+
   if (status === 1) { // title or author
     showList(data1);
   }
@@ -12,7 +15,7 @@ var callBack = function (data1, status) {
     else
       showBook(data1, 0);
   }
-  saveData = data1;
+  
 };
 
 var fetch = function (pathURL, callBack, status) {
@@ -74,11 +77,8 @@ $('.searchBtn').click(function () {
 var showList = function (res) {
   for (var i = 0; i < 10; i++) {
     var title = res.items[i].volumeInfo.title;
-    var d = res.items[i].volumeInfo.description;
-    if (d === undefined) 
-      d= "No description found";
       
-    $('ol').append('<li data-id= ' + i + '  data-toggle="tooltip" title="'+ d+ '">' + title + '</li>');
+    $('ol').append('<li data-id= ' + i + '>' + title + '</li>');
   }
 
   $('.list-10-books').css('display', 'block');
@@ -111,13 +111,13 @@ var showBook = function (data, i) {
 // show the detials in the containerbook of specify book by click on list item
 $('ol').on('click', 'li', function () {
   console.log($(this).text());
+  
   $('.containerBook').empty();
-  // $(this).css('color', 'orange');
   var id = $(this).data().id;
   showBook(saveData, id);
 });
 
 
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
+// $(document).ready(function(){
+//   $('[data-toggle="tooltip"]').tooltip();
+// });
