@@ -22,19 +22,29 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6 col-md-offset-3 right">
                 <div class="page-header">
                     <h1 class="header">BookLook</h1>
                     <i class="fa fa-eye"></i>
                 </div>
                 <div class="containerBook"></div>
+
                 <form class="search-form">
                     <div class="form-group">
-                        <h3> Search by ISBN</h3>
-                        <input type="text" class="isbn-input form-control" placeholder="ISBN Number">
+                        <h3> Search by:</h3>
+                        <input type="number" id="isbn" class="isbn-input form-control" placeholder="ISBN Number">
+                        <input type="text" id="title" class="isbn-input form-control" placeholder="title">
+                        <input type="text" id="author" class="isbn-input form-control" placeholder="author">
                     </div>
                     <button class="btn btn-primary searchBtn" type="button">Search</button>
                 </form>
+            </div>
+
+            <div class="col-md-6 col-md-offset-3 list-10-books">
+                <h3>list-10-books:</h3>
+                <ol class="list">
+
+                </ol>
             </div>
         </div>
     </div>
