@@ -9,7 +9,7 @@ var fetch = function (pathURL, status) {
     method: 'GET',
     url: pathURL,
 
-    beforeSend: function(){
+    beforeSend: function () {
       $('.load').show();
     },
     success: function (data) {
@@ -23,7 +23,7 @@ var fetch = function (pathURL, status) {
         if (data.totalItems === 0)
           $('.containerBook').append("<h5 style='color:red'>No search result found by this input. </h5>")
         else
-        showList(data);
+          showList(data);
       }
       else { // isbn
         if (data.totalItems === 0)
@@ -32,7 +32,7 @@ var fetch = function (pathURL, status) {
           showBook(data, 0);
       }
 
-    
+
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.log(textStatus);
@@ -57,15 +57,15 @@ $('.searchBtn').click(function () {
   else if (title == '' && isbn == '') {
     console.log(' search author only');
     var url = 'https://www.googleapis.com/books/v1/volumes?q=inauthor:' + author;
-    fetch(url,  1);
+    fetch(url, 1);
   }
   else if (isbn == '') {
     console.log(' search title only');
     url = 'https://www.googleapis.com/books/v1/volumes?q=intitle:' + title;
-    fetch(url,  1);
+    fetch(url, 1);
   }
   else {
-    $('.list-10-books').css('display', 'none');    
+    $('.list-10-books').css('display', 'none');
     console.log(' search isbn only');
     url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + '';
     // var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:0439023521';
@@ -81,11 +81,11 @@ var showList = function (res) {
   for (var i = 0; i < 10; i++) {
     var t = res.items[i].volumeInfo.title;
     var d = res.items[i].volumeInfo.description;
-    if (d === undefined) d= ' No description found ';
-    $('ol').append("<li data-id= " + i + "   data-toggle='tooltip' title=\" "+ d +" \" >" + t + "</li>");
+    if (d === undefined) d = ' No description found ';
+    $('ol').append("<li data-id= " + i + "   data-toggle='tooltip' title=\" " + d + " \" >" + t + "</li>");
   }
 
-   $('.list-10-books').css('display', 'block');
+  $('.list-10-books').css('display', 'block');
 };
 
 var showBook = function (data, i) {
@@ -122,6 +122,6 @@ $('ol').on('click', 'li', function () {
 });
 
 
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
+// $(document).ready(function(){
+//   $('[data-toggle="tooltip"]').tooltip();
+// });
