@@ -2,27 +2,8 @@ var saveData;
 
 $('.load').hide();
 
-var callBack = function (data1, status) {
 
-  saveData = data1;
-
-  if (status === 1) { // title or author
-    if (data1.totalItems === 0)
-      $('.containerBook').append("<h5 style='color:red'>No search result found by this input. </h5>")
-    else
-    showList(data1);
-  }
-  else { // isbn
-    if (data1.totalItems === 0)
-      $('.containerBook').append("<h5 style='color:red'>No search result found by this ISBN. </h5>")
-    else
-      showBook(data1, 0);
-  }
-
-  //saveData = data1;
-};
-
-var fetch = function (pathURL, callBack, status) {
+var fetch = function (pathURL, status) {
 
   $.ajax({
     method: 'GET',
@@ -36,7 +17,22 @@ var fetch = function (pathURL, callBack, status) {
       console.log(data);
 
       $('.load').hide();
-      callBack(data, status);
+      saveData = data;
+
+      if (status === 1) { // title or author
+        if (data.totalItems === 0)
+          $('.containerBook').append("<h5 style='color:red'>No search result found by this input. </h5>")
+        else
+        showList(data);
+      }
+      else { // isbn
+        if (data.totalItems === 0)
+          $('.containerBook').append("<h5 style='color:red'>No search result found by this ISBN. </h5>")
+        else
+          showBook(data, 0);
+      }
+
+    
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.log(textStatus);
@@ -61,33 +57,35 @@ $('.searchBtn').click(function () {
   else if (title == '' && isbn == '') {
     console.log(' search author only');
     var url = 'https://www.googleapis.com/books/v1/volumes?q=inauthor:' + author;
-    fetch(url, callBack, 1);
+    fetch(url,  1);
   }
   else if (isbn == '') {
     console.log(' search title only');
     url = 'https://www.googleapis.com/books/v1/volumes?q=intitle:' + title;
-    fetch(url, callBack, 1);
+    fetch(url,  1);
   }
   else {
     $('.list-10-books').css('display', 'none');    
     console.log(' search isbn only');
     url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + '';
     // var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:0439023521';
-    fetch(url, callBack, 0);
+    fetch(url, 0);
   }
 
 });
 
 var showList = function (res) {
-  $('.list-10-books').css('display', 'block');
+  //$('.list-10-books').css('display', 'block');
   console.log("The data in show list:");
   console.log(res);
   for (var i = 0; i < 10; i++) {
     var t = res.items[i].volumeInfo.title;
-    $('ol').append('<li data-id= ' + i + '>' + t + '</li>');
+    var d = res.items[i].volumeInfo.description;
+    if (d === undefined) d= ' No description found ';
+    $('ol').append("<li data-id= " + i + "   data-toggle='tooltip' title=\" "+ d +" \" >" + t + "</li>");
   }
 
-  // $('.list-10-books').css('display', 'block');
+   $('.list-10-books').css('display', 'block');
 };
 
 var showBook = function (data, i) {
@@ -124,6 +122,6 @@ $('ol').on('click', 'li', function () {
 });
 
 
-// $(document).ready(function(){
-//   $('[data-toggle="tooltip"]').tooltip();
-// });
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
