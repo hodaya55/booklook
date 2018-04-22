@@ -75,7 +75,7 @@ $('.searchBtn').click(function () {
 });
 
 var showList = function (res) {
-  //$('.list-10-books').css('display', 'block');
+  $('.list-10-books').css('display', 'block');
   console.log("The data in show list:");
   console.log(res);
   for (var i = 0; i < 10; i++) {
@@ -85,7 +85,7 @@ var showList = function (res) {
     $('ol').append("<li data-id= " + i + "   data-toggle='tooltip' title=\" " + d + " \" >" + t + "</li>");
   }
 
-  $('.list-10-books').css('display', 'block');
+  //$('.list-10-books').css('display', 'block');
 };
 
 var showBook = function (data, i) {
