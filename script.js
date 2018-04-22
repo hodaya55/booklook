@@ -2,6 +2,43 @@ var saveData;
 
 $('.load').hide();
 
+var showList = function (res) {
+  $('.list-10-books').css('display', 'block');
+  console.log("The data in show list:");
+  console.log(res);
+  for (var i = 0; i < 10; i++) {
+    var t = res.items[i].volumeInfo.title;
+    var d = res.items[i].volumeInfo.description;
+    if (d === undefined) d = ' No description found ';
+    $('ol').append("<li data-id= " + i + "   data-toggle='tooltip' title=\" " + d + " \" >" + t + "</li>");
+  }
+
+  //$('.list-10-books').css('display', 'block');
+};
+
+var showBook = function (data, i) {
+  var t = data.items[i].volumeInfo.title;
+  var a = data.items[i].volumeInfo.authors; //[0];
+  var d = data.items[i].volumeInfo.description;
+  var im = data.items[i].volumeInfo.imageLinks; //.smallThumbnail;
+
+  if (im === undefined)
+    var img = '<img src="noimg.jpg" style="width: 176px; height: 170px;" >';
+  else var img = '<img src="' + im.smallThumbnail + '" >';
+
+  var header = '<h2>' + t + '</h2> ';
+
+  if (d === undefined) var desc = '<p> No description found </p>';
+  else var desc = '<p>' + d + '</p>';
+
+  if (a === undefined) {
+    var author = '<h4> No author found  </h4>';
+  } else {
+    author = '<h4>Written by: ' + a + '</h4>';
+  }
+
+  $('.containerBook').append(header + desc + author + img);
+};
 
 var fetch = function (pathURL, status) {
 
@@ -74,43 +111,7 @@ $('.searchBtn').click(function () {
 
 });
 
-var showList = function (res) {
-  $('.list-10-books').css('display', 'block');
-  console.log("The data in show list:");
-  console.log(res);
-  for (var i = 0; i < 10; i++) {
-    var t = res.items[i].volumeInfo.title;
-    var d = res.items[i].volumeInfo.description;
-    if (d === undefined) d = ' No description found ';
-    $('ol').append("<li data-id= " + i + "   data-toggle='tooltip' title=\" " + d + " \" >" + t + "</li>");
-  }
 
-  //$('.list-10-books').css('display', 'block');
-};
-
-var showBook = function (data, i) {
-  var t = data.items[i].volumeInfo.title;
-  var a = data.items[i].volumeInfo.authors; //[0];
-  var d = data.items[i].volumeInfo.description;
-  var im = data.items[i].volumeInfo.imageLinks; //.smallThumbnail;
-
-  if (im === undefined)
-    var img = '<img src="noimg.jpg" style="width: 176px; height: 170px;" >';
-  else var img = '<img src="' + im.smallThumbnail + '" >';
-
-  var header = '<h2>' + t + '</h2> ';
-
-  if (d === undefined) var desc = '<p> No description found </p>';
-  else var desc = '<p>' + d + '</p>';
-
-  if (a === undefined) {
-    var author = '<h4> No author found  </h4>';
-  } else {
-    author = '<h4>Written by: ' + a + '</h4>';
-  }
-
-  $('.containerBook').append(header + desc + author + img);
-};
 
 // show the detials in the containerbook of specify book by click on list item
 $('ol').on('click', 'li', function () {
